@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/DisplayOCR.css';
+import '../styles/DisplayOCR.css'; // Import your CSS file here
+import { Link } from 'react-router-dom';
 
 const DisplayOCR = () => {
   const [identificationNumberToDisplay, setIdentificationNumberToDisplay] = useState('');
   const [idCards, setIdCards] = useState(null);
   const [showToast, setShowToast] = useState(false);
-  const [noData, setNoData] = useState(false);
+  const [invalidIdToast, setInvalidIdToast] = useState(false);
 
   const fetchIdCards = async () => {
     try {
@@ -14,26 +15,30 @@ const DisplayOCR = () => {
       console.log(response.data.ocrData);
       if (response.data.ocrData) {
         setIdCards(response.data.ocrData);
-        setShowToast(true); // Show toast for successful data fetch
-        setNoData(false); // Reset noData flag
+        setShowToast(true); // Show toast on successful data fetch
+        setInvalidIdToast(false); // Reset invalid ID toast
       } else {
-        setNoData(true); // Set flag for no data
-        setShowToast(true); // Show toast for no data
+        // If ID doesn't exist
+        setIdCards(null); // Clear previous data from UI
+        setInvalidIdToast(true); // Set invalid ID toast
+        setShowToast(false); // Hide success toast
       }
     } catch (error) {
+        setInvalidIdToast(true);
       console.error('Error fetching ID cards:', error);
     }
   };
 
   useEffect(() => {
-    if (showToast) {
+    if (showToast || invalidIdToast) {
       const timer = setTimeout(() => {
         setShowToast(false);
+        setInvalidIdToast(false);
       }, 3000); // Hide toast after 3 seconds
 
       return () => clearTimeout(timer);
     }
-  }, [showToast]);
+  }, [showToast, invalidIdToast]);
 
   return (
     <>
@@ -49,9 +54,7 @@ const DisplayOCR = () => {
           Display
         </button>
 
-        {noData && <p className="no-data-text">No data</p>}
-
-        {idCards && !noData && (
+        {idCards && (
           <table id="idCardInfo">
             <tbody>
               <tr>
@@ -82,9 +85,9 @@ const DisplayOCR = () => {
           </table>
         )}
       </div>
-
-      {showToast && idCards && <div className="toast">Data fetched successfully!</div>}
-      {showToast && noData && <div className="toast">ID number does not exist!</div>}
+      <Link to="/">Homepage</Link>
+      {showToast && <div className="toast">Data fetched successfully!</div>}
+      {invalidIdToast && <div className="toast">Invalid ID!</div>}
     </>
   );
 };

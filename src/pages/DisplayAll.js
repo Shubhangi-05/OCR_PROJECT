@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const DisplayAll = () => {
     const [data, setData] = useState(null);
     const [formData, setFormData] = useState({
@@ -57,6 +58,7 @@ const DisplayAll = () => {
           </div>
         );
       })}
+      <Link to="/">Homepage</Link>
       </div>
   )
 }

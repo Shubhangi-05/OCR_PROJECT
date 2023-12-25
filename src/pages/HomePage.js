@@ -27,8 +27,9 @@ const Homepage = () => {
       </div>
 
       <div className="button-container">
-        <button onClick={() => navigate('/displayAll')}>Display All OCR and Update if Any</button>
+        <button onClick={() => navigate('/displayAll')}>Display All OCR</button>
       </div>
+
     </div>
   );
 };

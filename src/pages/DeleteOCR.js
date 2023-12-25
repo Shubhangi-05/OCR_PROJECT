@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import '../styles/DeleteOCR.css'; // Import your CSS file here
+import { Link } from 'react-router-dom';
 
 const DeleteOCR = () => {
   const [identificationNumberToDelete, setIdentificationNumberToDelete] = useState('');
@@ -21,6 +22,7 @@ const DeleteOCR = () => {
         console.log('OCR data not found');
       }
     } catch (error) {
+        toast.error('OCR data not found');
       console.log('Error deleting OCR data:', error);
     }
   };
@@ -43,6 +45,7 @@ const DeleteOCR = () => {
         <span className="input-text">{identificationNumberToDelete ? '' : inputPlaceholder}</span>
       </div>
       <button className="delete-button" onClick={handleDelete}>Delete</button>
+      <Link to="/">Homepage</Link>
     </div>
   );
 };

@@ -95,7 +95,7 @@ export const todelete=async(req,res)=>{
     const { identificationNumber } = req.params;
 
     // Use the deleteOne method to delete the document by identification number
-    const result = await OCRModel.deleteOne({ identificationNumber: identificationNumber });
+    const result = await OCRModel.deleteMany({ identificationNumber: identificationNumber });
 
     if (result.deletedCount === 1) {
       res.json({ success: true, message: 'OCR data deleted successfully' });
@@ -119,35 +119,37 @@ export const displayall=async(req,res)=>{
        }
     
 };
-export const toupdate =async(req,res)=>{
+export const toupdate = async (req, res) => {
+    console.log("This is Sneh ========");
+    const id = req.params.id; // Assuming the ID is in the params
+    console.log(id);
+    const { identificationNumber, name, lastName, dateOfBirth, dateOfIssue, dateOfExpiry } = req.body;
+    console.log(req.body);
     try {
-            const id=req.params;
-            const {identificationNumber,name,lastName,dateOfBirth,dateOfIssue,dateOfExpiry} = req.body;
-            const newId = {}
-            newId.identificationNumber=identificationNumber;
-            newId.name=name;
-            newId.lastName=lastName;
-            newId.dateOfBirth=dateOfBirth;
-            newId.dateOfIssue=dateOfIssue;
-            newId.dateOfExpiry=dateOfExpiry
-            try {
-             const idCard = await OCRModel.findOne({ identificationNumber: id });
-            if(!idCard){return res.status(401).res("Not Found")}
-            const updatedId = await OCRModel.findManyAndUpdate( { identificationNumber: id },
-                { $set: newId },
-                { new: true } );
-                if (updatedId) {
-                    res.json({ success: true, updatedId });
-                  } else {
-                    res.status(404).json({ success: false, message: 'OCR data not found' });
-                  }
-            } catch (error) {
-                console.log(error.message)
-                res.status(500).json("Internal server Error")
-            }
-        }catch(error){
-            console.log(error.message);
-            res.status(500).json("Internal server Error")
-        }
-        
-    };
+      const idCard = await OCRModel.findById(id);
+      if (!idCard) {
+        return res.status(404).send("Not Found");
+      }
+      const updatedId = await OCRModel.findByIdAndUpdate({_id:id},
+        { $set: {
+            identificationNumber:identificationNumber,
+            name:name,
+            lastName:lastName,
+            dateOfBirth:dateOfBirth,
+            dateOfIssue:dateOfIssue,
+            dateOfExpiry:dateOfExpiry,
+        } },
+        { new: true } // This option returns the modified document rather than the original
+      );
+        console.log(updatedId);
+      if (updatedId) {
+        res.json({ success: true, updatedId });
+      } else {
+        res.status(404).json({ success: false, message: 'OCR data not found' });
+      }
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json("Internal server Error");
+    }
+  };
+  

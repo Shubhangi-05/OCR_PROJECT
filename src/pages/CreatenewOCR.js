@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import "../styles/CreatenewOCR.css";
+import {Link} from "react-router-dom";
 const CreatenewOCR = () => {
   const navigate = useNavigate();
   const [idcard, setidcard] = useState('');
@@ -77,7 +78,9 @@ const CreatenewOCR = () => {
         </div>
 
       )}
+      <Link to="/">Homepage</Link>
     </div>
+     
   );
 };
 
