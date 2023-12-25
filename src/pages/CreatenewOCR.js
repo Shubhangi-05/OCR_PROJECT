@@ -6,6 +6,7 @@ import axios from "axios";
 const CreatenewOCR = () => {
    const navigate=useNavigate();
    const [idcard,setidcard]=useState("");
+   const [outData, setoutData]=useState(null);
    const handlecreate=async(e)=>
    {
       e.preventDefault();
@@ -20,7 +21,8 @@ const CreatenewOCR = () => {
           toast.error(data?.message);
         } else {
           toast.success("OCR Created Successfully");
-          // navigate("/display");
+          setoutData(data);
+          
         }
       } catch (error) {
         console.log(error);
@@ -46,6 +48,30 @@ const CreatenewOCR = () => {
     <div><button onClick={handlecreate}>
       Submit
     </button></div>
+    {outData && (
+        <div  style={{
+            borderStyle: 'solid',
+            borderWidth: '1px',
+            borderColor: "#848484",
+            borderRadius: '10px',
+            width: 'fit-content',
+            padding: '20px'
+          }}>
+            <h1 style={{ borderStyle: 'solid',borderColor: "#848484",}}> Data Extracted</h1>
+            <h1> Identification Number: {outData.identificationNumber}</h1>
+            <h1> Name: {outData.name}</h1>
+            <h1> LastName: {outData.lastName}</h1>
+            <h1> DOB: {outData.dateOfBirth}</h1>
+            <h1> Date of Issue: {outData.dateOfIssue}</h1>
+            <h1> Date o Expiry: {outData.dateOfExpiry}</h1>
+
+            <div style={{
+              display: 'flex',
+              gap: "20px"
+            }}>
+            </div>
+        </div>
+    )}
     </>
   );
 }
