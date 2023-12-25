@@ -1,3 +1,6 @@
+# DEPLOYED LINK
+https://idcard-ocr-tmri.onrender.com/
+
 # QOALA OCR WEB APP
 Create an OCR (Optical Character Recognition) App that can recognize thai id cards and get the required information. Save this information for retrival later.
 
@@ -44,27 +47,47 @@ It has various functionalities:
 Download the zip or clone the repository from repository :git clone https://github.com/Shubhangi-05/OCR_PROJECT
 
 **Step 2:**
-Go to the myproject directory and run --> npm install to install all the dependencies.
+Go to the client directory and run --> npm install to install all the dependencies at the client side.
 Go to the server folder and again run npm install to install all the dependencies at the server side.
 
 **Step 3:**
-Create a .env file at the server folder and write the MONGO_URL link of your corresponding cluster at atlas.
-Also ensure that you type PORT=8000 in your .env file 
-
-**Step 4:**
-Create a config folder and then create a serviceAccount.js file where you have to type the service Account details of google cloud to use google cloud vision api
-This is how service Account.js will look like:
-export const CREDENTIALS= JSON.parse(JSON.stringify({
-    "type": "service_account",
-    ...all other details...
-    )}
-
-**Step 5:**
 now go to the server directory at terminal ..that is run     cd server    on terminal and then run    node server.js  to start the server side
-on another terminal go to the myproject directory and then run    npm start to run the client side.
+on another terminal go to the client directory and then run    npm start to run the client side.
 
 # Website will be opened and the UI will look like this :
 
-![HOMEPAGE.PNG](https://private-user-images.githubusercontent.com/91474175/292770519-8268c58c-6369-456f-93e8-ed3f6a65f80a.jpeg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDM1MjMxNzYsIm5iZiI6MTcwMzUyMjg3NiwicGF0aCI6Ii85MTQ3NDE3NS8yOTI3NzA1MTktODI2OGM1OGMtNjM2OS00NTZmLTkzZTgtZWQzZjZhNjVmODBhLmpwZWc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMjI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTIyNVQxNjQ3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00NjM5MDVkNDMxOGU3MmFiNzc5NTJiZjc5OTFkZWExYzZhYzUyNjkyZDQ1NDFmZGE2YjAzNGFkYWNjZWU5ZjU0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.9D_f96aE2evAM9h_qpPeGWRDP0Q_jyI4esB-VOYrjCk)
+**Homepage**
+<img width="950" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/9f78bb71-650f-4dd6-82a7-58212cbb7c82">
+
+
+**Create OCR**
+<img width="957" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/d8519467-8ea3-4919-a606-f01d8a31d9b3">
+
+After Creation of OCR DATABASE:
+
+<img width="902" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/67f93a06-c4f7-496e-a216-27f6343aa439">
+
+**Update OCR**
+
+
+
+**Display OCR**
+<img width="956" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/199acb86-27da-41f6-8404-a5812df51f00">
+
+**Update OCR**
+<img width="725" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/ad643e6c-1b9b-4767-8cc3-759f640a5487">
+
+After Updating Database:
+<img width="938" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/b72676dc-891d-4ce4-b3d0-7af1fba7d13f">
+
+
+
+**Delete OCR**
+<img width="956" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/3081cc55-6724-479d-bb92-c479230c9b83">
+After Deletion:
+ATLAS:
+<img width="580" alt="image" src="https://github.com/Shubhangi-05/OCR_PROJECT/assets/91474175/17ba9e4a-ed39-4a39-9ab3-82788dfe1dfd">
+
+
 
 # NOW GO ON AND TRY ALL THE FEATURES!
