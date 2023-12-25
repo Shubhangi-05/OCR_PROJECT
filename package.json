@@ -2,7 +2,7 @@
   "name": "myproject",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://serverrr-ocr.onrender.com",
+  "proxy": "https://ocr-server-onvx.onrender.com",
     "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
