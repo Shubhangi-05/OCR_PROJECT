@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 const DisplayAll = () => {
     const [data, setData] = useState(null);
-    const [formData, setFormData] = useState({
-      _id:"",
-      identificationNumber: "",
-      name: "",
-      lastName: "",
-      dateOfBirth: "",
-      dateOfIssue: "",
-      dateOfExpiry: "",
-    });
+    // const [formData, setFormData] = useState({
+    //   _id:"",
+    //   identificationNumber: "",
+    //   name: "",
+    //   lastName: "",
+    //   dateOfBirth: "",
+    //   dateOfIssue: "",
+    //   dateOfExpiry: "",
+    // });
     useEffect(()=>{
         const fetchIds = async () => {
             try {

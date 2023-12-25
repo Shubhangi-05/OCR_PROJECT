@@ -77,20 +77,17 @@ export const create = async (req, res) => {
 };
 
 export const display =async(req,res)=>{
-    try{
-        const filters = req.query;
-
-        Object.keys(filters).forEach((key) => filters[key] === undefined && delete filters[key]);
-
-        // Implement logic to query the database based on the filters
-        const filteredIdCards = await OCRModel.find(filters);
-        console.log(filteredIdCards);
-        res.json(filteredIdCards);
-    }
-    catch (error){
-        console.log(error.message);
-        res.status(500).json("Internal Server Error")
-    }
+    try {
+        const {identificationNumber} = req.params;
+        const ocrData = await OCRModel.findOne({ identificationNumber: identificationNumber });
+        if (ocrData) {
+            res.json({ success: true, ocrData });
+          } else {
+            res.status(404).json({ success: false, message: 'OCR data not found' });
+          }
+      } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
 };
 
 export const todelete=async(req,res)=>{
@@ -113,11 +110,24 @@ export const todelete=async(req,res)=>{
 
 export const displayall=async(req,res)=>{
     try{
-        const idCard = await OCRModel.find({})
+        const idCard = await OCRModel.find();
         res.json(idCard)
        } catch (error) {
         console.log(error.message)
         res.status(500).json("Internal server Error")
        }
     
+};
+export const toupdate =async(req,res)=>{
+    try {
+        const identificationNumber = req.params.id;
+        const updatedData = req.body; // Assuming the request body contains the updated data
+    
+        // Use updateMany to update all documents with the specified identificationNumber
+        const result = await OCRModel.updateMany({ identificationNumber }, { $set: updatedData });
+    
+        res.json(result);
+      } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
 };

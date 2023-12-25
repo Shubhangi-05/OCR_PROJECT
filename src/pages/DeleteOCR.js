@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 const DeleteOCR = () => {
   const [identificationNumberToDelete, setIdentificationNumberToDelete] = useState('');
 
@@ -11,12 +11,14 @@ const DeleteOCR = () => {
       
       // Check the response and handle accordingly
       if (response.data.success) {
+        toast.success('OCR data deleted successfully');
         console.log('OCR data deleted successfully');
       } else {
+        toast.error(response?.message);
         console.log('OCR data not found');
       }
     } catch (error) {
-      console.error('Error deleting OCR data:', error);
+      console.log('Error deleting OCR data:', error);
     }
   };
 
