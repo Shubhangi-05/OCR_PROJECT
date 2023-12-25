@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import {Routes,Route} from 'react-router-dom';
+import HomePage from './pages/HomePage.js';
+import CreatenewOCR from './pages/CreatenewOCR.js';
+import DeleteOCR from './pages/DeleteOCR.js';
+import UpdateOCR from './pages/UpdateOCR.js';
+import DisplayOCR from './pages/DisplayOCR.js';
+import DisplayAll from './pages/DisplayAll.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+        <Route exact path='/' element={<HomePage/>}></Route>
+        <Route exact path='/create' element={<CreatenewOCR/>}></Route>
+        <Route exact path='/update' element={<UpdateOCR/>}></Route>
+        <Route exact path='/delete' element={<DeleteOCR/>}></Route>
+        <Route exact path='/display' element={<DisplayOCR/>}></Route>
+        <Route exact path='/displayAll' element={<DisplayAll/>}></Route>
+    </Routes>
   );
 }
 
