@@ -7,7 +7,8 @@ import cors from "cors";
 import apiRoutes from "./Routes/apiRoutes.js";
 
 dotenv.config();
-const DB=process.env.MONGO_URL;
+
+const DB="mongodb+srv://sinhashubhi297:ocrproject@cluster0.q0b80e6.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(DB,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
