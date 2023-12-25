@@ -114,6 +114,7 @@ export const displayall=async(req,res)=>{
         console.log(idCard);
         res.json(idCard)
        } catch (error) {
+        console.error(error)
         console.log(error.message)
         res.status(500).json("Internal server Error")
        }
