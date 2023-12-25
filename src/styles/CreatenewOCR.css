@@ -1,0 +1,64 @@
+/* CreatenewOCR.css */
+
+.createnewocr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 200px;
+  }
+  
+  .file-input-container {
+    margin-bottom: 20px;
+  }
+  
+  .file-input-label {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #4caf50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .file-input-label:hover {
+    background-color: #45a049; /* Darker Green */
+  }
+  
+  .submit-button-container {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4caf50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker Green */
+  }
+  
+  .output-data-container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #848484;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .output-title {
+    border-style: solid;
+    border-color: #848484;
+  }
+  .image-preview {
+    max-width: 100%; /* Adjust the maximum width as needed */
+    max-height: 200px; /* Adjust the maximum height as needed */
+    margin-top: 10px; /* Add some margin for spacing */
+  }

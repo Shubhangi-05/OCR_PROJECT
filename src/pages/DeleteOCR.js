@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import '../styles/DeleteOCR.css'; // Import your CSS file here
+
 const DeleteOCR = () => {
   const [identificationNumberToDelete, setIdentificationNumberToDelete] = useState('');
+  const inputPlaceholder = 'Enter Identification Number to delete';
 
   const handleDelete = async () => {
     try {
@@ -14,7 +17,7 @@ const DeleteOCR = () => {
         toast.success('OCR data deleted successfully');
         console.log('OCR data deleted successfully');
       } else {
-        toast.error(response?.message);
+        toast.error(response?.message || 'OCR data not found');
         console.log('OCR data not found');
       }
     } catch (error) {
@@ -22,16 +25,24 @@ const DeleteOCR = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setIdentificationNumberToDelete(e.target.value);
+  };
+
   return (
     <div>
       <h1>Delete OCR Data</h1>
-      <label>Enter Identification Number to delete:</label>
-      <input
-        type="text"
-        value={identificationNumberToDelete}
-        onChange={(e) => setIdentificationNumberToDelete(e.target.value)}
-      />
-      <button onClick={handleDelete}>Delete</button>
+      <label htmlFor="deleteInput">Enter Identification Number to delete:</label>
+      <div style={{ position: 'relative' }}>
+        <input
+          type="text"
+          id="deleteInput"
+          value={identificationNumberToDelete}
+          onChange={handleInputChange}
+        />
+        <span className="input-text">{identificationNumberToDelete ? '' : inputPlaceholder}</span>
+      </div>
+      <button className="delete-button" onClick={handleDelete}>Delete</button>
     </div>
   );
 };

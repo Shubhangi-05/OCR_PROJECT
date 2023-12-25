@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 const DisplayAll = () => {
     const [data, setData] = useState(null);
-    // const [formData, setFormData] = useState({
-    //   _id:"",
-    //   identificationNumber: "",
-    //   name: "",
-    //   lastName: "",
-    //   dateOfBirth: "",
-    //   dateOfIssue: "",
-    //   dateOfExpiry: "",
-    // });
+    const [formData, setFormData] = useState({
+      _id:"",
+      identificationNumber: "",
+      name: "",
+      lastName: "",
+      dateOfBirth: "",
+      dateOfIssue: "",
+      dateOfExpiry: "",
+    });
     useEffect(()=>{
         const fetchIds = async () => {
             try {
               const response = await axios.get('/api/getall');
-              const data = await response.json();
-              setData(data);
+              console.log(response);
+              setData(response.data);
             } catch (error) {
               console.error("There was a problem fetching the data:", error);
             }

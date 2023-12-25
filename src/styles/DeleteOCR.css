@@ -1,0 +1,36 @@
+/* DeleteOCR.css */
+
+/* General styles */
+h1 {
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  input[type='text'] {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* Text for input placeholder */
+  .input-text {
+    position: absolute;
+    margin-top: -8px;
+    margin-left: 5px;
+    color: #999;
+  }
+  
+  /* Button styles */
+  .delete-button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

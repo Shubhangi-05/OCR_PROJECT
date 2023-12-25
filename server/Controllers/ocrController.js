@@ -111,6 +111,7 @@ export const todelete=async(req,res)=>{
 export const displayall=async(req,res)=>{
     try{
         const idCard = await OCRModel.find();
+        console.log(idCard);
         res.json(idCard)
        } catch (error) {
         console.log(error.message)
@@ -120,14 +121,33 @@ export const displayall=async(req,res)=>{
 };
 export const toupdate =async(req,res)=>{
     try {
-        const identificationNumber = req.params.id;
-        const updatedData = req.body; // Assuming the request body contains the updated data
-    
-        // Use updateMany to update all documents with the specified identificationNumber
-        const result = await OCRModel.updateMany({ identificationNumber }, { $set: updatedData });
-    
-        res.json(result);
-      } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-};
+            const id=req.params;
+            const {identificationNumber,name,lastName,dateOfBirth,dateOfIssue,dateOfExpiry} = req.body;
+            const newId = {}
+            newId.identificationNumber=identificationNumber;
+            newId.name=name;
+            newId.lastName=lastName;
+            newId.dateOfBirth=dateOfBirth;
+            newId.dateOfIssue=dateOfIssue;
+            newId.dateOfExpiry=dateOfExpiry
+            try {
+             const idCard = await OCRModel.findOne({ identificationNumber: id });
+            if(!idCard){return res.status(401).res("Not Found")}
+            const updatedId = await OCRModel.findManyAndUpdate( { identificationNumber: id },
+                { $set: newId },
+                { new: true } );
+                if (updatedId) {
+                    res.json({ success: true, updatedId });
+                  } else {
+                    res.status(404).json({ success: false, message: 'OCR data not found' });
+                  }
+            } catch (error) {
+                console.log(error.message)
+                res.status(500).json("Internal server Error")
+            }
+        }catch(error){
+            console.log(error.message);
+            res.status(500).json("Internal server Error")
+        }
+        
+    };
